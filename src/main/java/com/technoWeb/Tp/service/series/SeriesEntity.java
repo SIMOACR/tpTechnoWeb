@@ -16,7 +16,7 @@ public class SeriesEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    private long id;
 
     @NonNull
     private String title;
