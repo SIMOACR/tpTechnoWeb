@@ -31,7 +31,6 @@ public class EventEntity {
     @ManyToOne
     private SeriesEntity seriesEntity;
 
-    @NonNull
     @ManyToMany
     private List<TagEntity> tagEntityList;
 }
