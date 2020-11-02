@@ -4,11 +4,9 @@ import com.technoWeb.Tp.model.Series;
 import com.technoWeb.Tp.service.series.SeriesService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -29,5 +27,15 @@ public class SeriesController {
     @GetMapping("{id}")
     public ResponseEntity<Series> getById(@PathVariable("id") long id) {
         return new ResponseEntity<>(seriesService.findById(id), HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<Series> create(@Valid @RequestBody Series facility) {
+        return new ResponseEntity<>(seriesService.createOrUpdate(facility), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Series> delete(@PathVariable("id") long id) {
+        return new ResponseEntity<>(seriesService.delete(id), HttpStatus.OK);
     }
 }

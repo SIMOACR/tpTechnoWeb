@@ -2,10 +2,7 @@ package com.technoWeb.Tp.service.series;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
@@ -19,6 +16,7 @@ public class SeriesEntity {
     private long id;
 
     @NonNull
+    @Column(unique=true)
     private String title;
 
     @NonNull
