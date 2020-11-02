@@ -1,6 +1,7 @@
 package com.technoWeb.Tp.service.series;
 
 import com.technoWeb.Tp.exception.NoContentException;
+import com.technoWeb.Tp.exception.NotFoundException;
 import com.technoWeb.Tp.exception.SeriesErrorMessages;
 import com.technoWeb.Tp.model.Series;
 import com.technoWeb.Tp.repository.SeriesRepository;
@@ -33,7 +34,7 @@ public class SeriesService {
 
     public Series findById(long id) {
         return seriesRepository.findById(id).map(seriesMapper::toModel)
-                .orElseThrow(() -> new NoContentException(SeriesErrorMessages.SERIES_NOT_FOUND.name()));
+                .orElseThrow(() -> new NotFoundException(SeriesErrorMessages.SERIES_NOT_FOUND.name()));
     }
 
 }
