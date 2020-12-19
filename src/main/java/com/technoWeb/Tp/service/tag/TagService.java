@@ -6,6 +6,7 @@ import com.technoWeb.Tp.exception.TagErrorMessages;
 import com.technoWeb.Tp.exception.UnauthorizedException;
 import com.technoWeb.Tp.model.Tag;
 import com.technoWeb.Tp.repository.TagRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,14 +16,11 @@ import java.util.stream.Collectors;
 @Service
 public class TagService {
 
+    @Autowired
     private TagRepository tagRepository;
 
+    @Autowired
     private TagMapper tagMapper;
-
-    public TagService(TagRepository tagRepository, TagMapper tagMapper) {
-        this.tagRepository = tagRepository;
-        this.tagMapper = tagMapper;
-    }
 
     public List<Tag> findAll() {
         List<TagEntity> facilityEntities = tagRepository.findAll();

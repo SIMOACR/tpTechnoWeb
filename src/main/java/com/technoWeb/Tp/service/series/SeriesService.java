@@ -6,6 +6,7 @@ import com.technoWeb.Tp.exception.SeriesErrorMessages;
 import com.technoWeb.Tp.exception.UnauthorizedException;
 import com.technoWeb.Tp.model.Series;
 import com.technoWeb.Tp.repository.SeriesRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,14 +16,11 @@ import java.util.stream.Collectors;
 @Service
 public class SeriesService {
 
+    @Autowired
     private SeriesRepository seriesRepository;
 
+    @Autowired
     private SeriesMapper seriesMapper;
-
-    public SeriesService(SeriesRepository seriesRepository, SeriesMapper seriesMapper) {
-        this.seriesRepository = seriesRepository;
-        this.seriesMapper = seriesMapper;
-    }
 
     public List<Series> findAll() {
         List<SeriesEntity> facilityEntities = seriesRepository.findAll();

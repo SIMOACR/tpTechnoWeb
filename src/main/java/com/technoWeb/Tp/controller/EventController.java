@@ -2,6 +2,7 @@ package com.technoWeb.Tp.controller;
 
 import com.technoWeb.Tp.model.Event;
 import com.technoWeb.Tp.service.event.EventService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +14,8 @@ import java.util.List;
 @RequestMapping("/event")
 public class EventController {
 
-    private final EventService eventService;
-
-    public EventController(EventService eventService) {
-        this.eventService = eventService;
-    }
+    @Autowired
+    private EventService eventService;
 
     @GetMapping
     public ResponseEntity<List<Event>> getAll() {

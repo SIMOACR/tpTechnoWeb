@@ -2,6 +2,7 @@ package com.technoWeb.Tp.controller;
 
 import com.technoWeb.Tp.model.Series;
 import com.technoWeb.Tp.service.series.SeriesService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +14,8 @@ import java.util.List;
 @RequestMapping("/series")
 public class SeriesController {
 
-    private final SeriesService seriesService;
-
-    public SeriesController(SeriesService seriesService) {
-        this.seriesService = seriesService;
-    }
+    @Autowired
+    private SeriesService seriesService;
 
     @GetMapping
     public ResponseEntity<List<Series>> getAll() {

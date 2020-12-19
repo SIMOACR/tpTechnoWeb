@@ -2,7 +2,9 @@ package com.technoWeb.Tp.service.user;
 
 import com.technoWeb.Tp.model.User;
 import com.technoWeb.Tp.service.mapper.Mapper;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserMapper implements Mapper<User, UserEntity> {
 
     @Override

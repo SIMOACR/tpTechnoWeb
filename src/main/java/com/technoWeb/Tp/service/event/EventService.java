@@ -6,6 +6,7 @@ import com.technoWeb.Tp.exception.NotFoundException;
 import com.technoWeb.Tp.exception.UnauthorizedException;
 import com.technoWeb.Tp.model.Event;
 import com.technoWeb.Tp.repository.EventRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,14 +16,11 @@ import java.util.stream.Collectors;
 @Service
 public class EventService {
 
+    @Autowired
     private EventRepository eventRepository;
 
+    @Autowired
     private EventMapper eventMapper;
-
-    public EventService(EventRepository eventRepository, EventMapper eventMapper) {
-        this.eventRepository = eventRepository;
-        this.eventMapper = eventMapper;
-    }
 
     public List<Event> findAll() {
         List<EventEntity> facilityEntities = eventRepository.findAll();
