@@ -3,6 +3,7 @@ package com.technoWeb.Tp.service.series;
 import com.technoWeb.Tp.exception.NoContentException;
 import com.technoWeb.Tp.exception.NotFoundException;
 import com.technoWeb.Tp.exception.SeriesErrorMessages;
+import com.technoWeb.Tp.exception.UnauthorizedException;
 import com.technoWeb.Tp.model.Series;
 import com.technoWeb.Tp.repository.SeriesRepository;
 import org.springframework.stereotype.Service;
@@ -14,9 +15,9 @@ import java.util.stream.Collectors;
 @Service
 public class SeriesService {
 
-    private final SeriesRepository seriesRepository;
+    private SeriesRepository seriesRepository;
 
-    private final SeriesMapper seriesMapper;
+    private SeriesMapper seriesMapper;
 
     public SeriesService(SeriesRepository seriesRepository, SeriesMapper seriesMapper) {
         this.seriesRepository = seriesRepository;
@@ -38,14 +39,27 @@ public class SeriesService {
                 .orElseThrow(() -> new NotFoundException(SeriesErrorMessages.SERIES_NOT_FOUND.name()));
     }
 
-    public Series createOrUpdate(Series series) {
-        SeriesEntity serieEntity = seriesMapper.fromModel(series);
-        Long id = series.getId();
-        if(id != null)
-            serieEntity.setId(id);
-        return seriesMapper.toModel(seriesRepository.save(serieEntity));
+    public Series create(Series series) {
+        SeriesEntity seriesEntity = seriesMapper.fromModel(series);
+        long id = series.getId();
+        if(id == 0) {
+            seriesEntity.setId(id);
+            return seriesMapper.toModel(seriesRepository.save(seriesEntity));
+        } else {
+            throw new UnauthorizedException(SeriesErrorMessages.SERIES_ALREADY_EXIST.name());
+        }
     }
 
+    public Series update(Series series) {
+        SeriesEntity seriesEntity = seriesMapper.fromModel(series);
+        long id = series.getId();
+        if(id != 0) {
+            seriesEntity.setId(id);
+            return seriesMapper.toModel(seriesRepository.save(seriesEntity));
+        } else {
+            throw new UnauthorizedException(SeriesErrorMessages.NEW_SERIES.name());
+        }
+    }
 
     public Series delete(long id) {
         Optional<SeriesEntity> facilityEntityOptional = seriesRepository.findById(id);

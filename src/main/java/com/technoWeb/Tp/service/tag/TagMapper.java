@@ -2,7 +2,9 @@ package com.technoWeb.Tp.service.tag;
 
 import com.technoWeb.Tp.model.Tag;
 import com.technoWeb.Tp.service.mapper.Mapper;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TagMapper implements Mapper<Tag, TagEntity> {
     @Override
     public Tag toModel(TagEntity entity) {

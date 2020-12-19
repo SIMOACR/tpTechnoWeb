@@ -7,10 +7,12 @@ import com.technoWeb.Tp.service.series.SeriesMapper;
 import com.technoWeb.Tp.service.tag.TagEntity;
 import com.technoWeb.Tp.service.tag.TagMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class EventMapper implements Mapper<Event, EventEntity> {
     @Autowired
     private SeriesMapper seriesMapper;

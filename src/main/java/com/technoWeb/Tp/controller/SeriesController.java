@@ -31,7 +31,12 @@ public class SeriesController {
 
     @PostMapping
     public ResponseEntity<Series> create(@Valid @RequestBody Series series) {
-        return new ResponseEntity<>(seriesService.createOrUpdate(series), HttpStatus.CREATED);
+        return new ResponseEntity<>(seriesService.create(series), HttpStatus.CREATED);
+    }
+
+    @PutMapping
+    public ResponseEntity<Series> update(@Valid @RequestBody Series series) {
+        return new ResponseEntity<>(seriesService.update(series), HttpStatus.CREATED);
     }
 
     @DeleteMapping("{id}")
