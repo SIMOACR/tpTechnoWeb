@@ -4,5 +4,6 @@ public enum SeriesErrorMessages {
     NO_SERIES,
     SERIES_NOT_FOUND,
     SERIES_ALREADY_EXIST,
-    NEW_SERIES
+    NEW_SERIES,
+    SERIES_DUPLICATED_TITLE
 }

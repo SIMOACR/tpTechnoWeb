@@ -44,7 +44,13 @@ public class TagService {
         long id = tag.getId();
         if(id == 0) {
             tagEntity.setId(id);
-            return tagMapper.toModel(tagRepository.save(tagEntity));
+            try {
+                return tagMapper.toModel(tagRepository.save(tagEntity));
+            }
+            catch(org.springframework.dao.DataIntegrityViolationException e)
+            {
+                throw new UnauthorizedException(TagErrorMessages.TAG_DUPLICATED_NAME.name());
+            }
         } else {
             throw new UnauthorizedException(TagErrorMessages.TAG_ALREADY_EXIST.name());
         }
@@ -55,7 +61,13 @@ public class TagService {
         long id = tag.getId();
         if(id != 0) {
             tagEntity.setId(id);
-            return tagMapper.toModel(tagRepository.save(tagEntity));
+            try {
+                return tagMapper.toModel(tagRepository.save(tagEntity));
+            }
+            catch(org.springframework.dao.DataIntegrityViolationException e)
+            {
+                throw new UnauthorizedException(TagErrorMessages.TAG_DUPLICATED_NAME.name());
+            }
         } else {
             throw new UnauthorizedException(TagErrorMessages.NEW_TAG.name());
         }
@@ -63,9 +75,9 @@ public class TagService {
 
 
     public Tag delete(long id) {
-        Optional<TagEntity> facilityEntityOptional = tagRepository.findById(id);
-        if (facilityEntityOptional.isPresent()) {
-            TagEntity facilityEntity = facilityEntityOptional.get();
+        Optional<TagEntity> tagEntityOptional = tagRepository.findById(id);
+        if (tagEntityOptional.isPresent()) {
+            TagEntity facilityEntity = tagEntityOptional.get();
             tagRepository.deleteById(id);
             return tagMapper.toModel(facilityEntity);
         } else

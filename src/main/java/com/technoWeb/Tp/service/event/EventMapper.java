@@ -49,6 +49,7 @@ public class EventMapper implements Mapper<Event, EventEntity> {
                     .map(tagMapper::fromModel)
                     .collect(Collectors.toList());
         return new EventEntity(
+                model.getId(),
                 model.getTimestamp(),
                 model.getValue(),
                 model.getComment(),

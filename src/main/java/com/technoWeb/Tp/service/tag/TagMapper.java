@@ -17,6 +17,7 @@ public class TagMapper implements Mapper<Tag, TagEntity> {
     @Override
     public TagEntity fromModel(Tag model) {
         return new TagEntity(
+                model.getId(),
                 model.getName()
         );
     }

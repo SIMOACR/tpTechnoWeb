@@ -44,7 +44,13 @@ public class SeriesService {
         long id = series.getId();
         if(id == 0) {
             seriesEntity.setId(id);
-            return seriesMapper.toModel(seriesRepository.save(seriesEntity));
+            try {
+                return seriesMapper.toModel(seriesRepository.save(seriesEntity));
+            }
+            catch(org.springframework.dao.DataIntegrityViolationException e)
+            {
+                throw new UnauthorizedException(SeriesErrorMessages.SERIES_DUPLICATED_TITLE.name());
+            }
         } else {
             throw new UnauthorizedException(SeriesErrorMessages.SERIES_ALREADY_EXIST.name());
         }
@@ -55,16 +61,22 @@ public class SeriesService {
         long id = series.getId();
         if(id != 0) {
             seriesEntity.setId(id);
-            return seriesMapper.toModel(seriesRepository.save(seriesEntity));
+            try {
+                return seriesMapper.toModel(seriesRepository.save(seriesEntity));
+            }
+            catch(org.springframework.dao.DataIntegrityViolationException e)
+            {
+                throw new UnauthorizedException(SeriesErrorMessages.SERIES_DUPLICATED_TITLE.name());
+            }
         } else {
             throw new UnauthorizedException(SeriesErrorMessages.NEW_SERIES.name());
         }
     }
 
     public Series delete(long id) {
-        Optional<SeriesEntity> facilityEntityOptional = seriesRepository.findById(id);
-        if (facilityEntityOptional.isPresent()) {
-            SeriesEntity facilityEntity = facilityEntityOptional.get();
+        Optional<SeriesEntity> seriesEntityOptional = seriesRepository.findById(id);
+        if (seriesEntityOptional.isPresent()) {
+            SeriesEntity facilityEntity = seriesEntityOptional.get();
             seriesRepository.deleteById(id);
             return seriesMapper.toModel(facilityEntity);
         } else

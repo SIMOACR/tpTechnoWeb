@@ -4,5 +4,6 @@ public enum TagErrorMessages {
     NO_TAGS,
     TAG_NOT_FOUND,
     TAG_ALREADY_EXIST,
-    NEW_TAG
+    NEW_TAG,
+    TAG_DUPLICATED_NAME
 }

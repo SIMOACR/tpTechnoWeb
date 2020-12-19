@@ -20,6 +20,7 @@ public class SeriesMapper implements Mapper<Series, SeriesEntity> {
     @Override
     public SeriesEntity fromModel(Series model) {
         return new SeriesEntity(
+                model.getId(),
                 model.getTitle(),
                 model.getDescription(),
                 model.isPublicAccess()

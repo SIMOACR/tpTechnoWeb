@@ -2,10 +2,7 @@ package com.technoWeb.Tp.service.tag;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
@@ -19,5 +16,6 @@ public class TagEntity {
     long id;
 
     @NonNull
+    @Column(unique=true)
     private String name;
 }
