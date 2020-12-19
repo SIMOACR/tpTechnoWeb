@@ -22,4 +22,7 @@ public class SeriesEntity {
     @NonNull
     private String description;
 
+    @NonNull
+    private boolean publicAccess;
+
 }

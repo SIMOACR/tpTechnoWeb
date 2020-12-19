@@ -12,7 +12,8 @@ public class SeriesMapper implements Mapper<Series, SeriesEntity> {
         return new Series(
                 entity.getId(),
                 entity.getTitle(),
-                entity.getDescription()
+                entity.getDescription(),
+                entity.isPublicAccess()
         );
     }
 
@@ -20,7 +21,8 @@ public class SeriesMapper implements Mapper<Series, SeriesEntity> {
     public SeriesEntity fromModel(Series model) {
         return new SeriesEntity(
                 model.getTitle(),
-                model.getDescription()
+                model.getDescription(),
+                model.isPublicAccess()
         );
     }
 }

@@ -38,12 +38,12 @@ public class SeriesService {
                 .orElseThrow(() -> new NotFoundException(SeriesErrorMessages.SERIES_NOT_FOUND.name()));
     }
 
-    public Series createOrUpdate(Series facility) {
-        SeriesEntity facilityEntity = seriesMapper.fromModel(facility);
-        Long id = facility.getId();
+    public Series createOrUpdate(Series series) {
+        SeriesEntity serieEntity = seriesMapper.fromModel(series);
+        Long id = series.getId();
         if(id != null)
-            facilityEntity.setId(id);
-        return seriesMapper.toModel(seriesRepository.save(facilityEntity));
+            serieEntity.setId(id);
+        return seriesMapper.toModel(seriesRepository.save(serieEntity));
     }
 
 

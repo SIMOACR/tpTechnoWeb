@@ -6,15 +6,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class Series {
+public class Tag {
     private long id;
 
     @NonNull
-    private String title;
-
-    @NonNull
-    private String description;
-
-    @NonNull
-    private boolean publicAccess;
+    private String name;
 }

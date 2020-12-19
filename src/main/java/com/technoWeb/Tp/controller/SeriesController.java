@@ -30,8 +30,8 @@ public class SeriesController {
     }
 
     @PostMapping
-    public ResponseEntity<Series> create(@Valid @RequestBody Series facility) {
-        return new ResponseEntity<>(seriesService.createOrUpdate(facility), HttpStatus.CREATED);
+    public ResponseEntity<Series> create(@Valid @RequestBody Series series) {
+        return new ResponseEntity<>(seriesService.createOrUpdate(series), HttpStatus.CREATED);
     }
 
     @DeleteMapping("{id}")
