@@ -27,9 +27,9 @@ public class UserService {
     private UserMapper userMapper;
 
     public List<User> findAll() {
-        List<UserEntity> facilityEntities = userRepository.findAll();
-        if (!facilityEntities.isEmpty())
-            return facilityEntities.stream()
+        List<UserEntity> userEntities = userRepository.findAll();
+        if (!userEntities.isEmpty())
+            return userEntities.stream()
                     .map(userMapper::toModel)
                     .collect(Collectors.toList());
         else
@@ -56,7 +56,7 @@ public class UserService {
             }
             catch(org.springframework.dao.DataIntegrityViolationException e)
             {
-                throw new UnauthorizedException(UserErrorMessages.USER_DUPLICATED_NAME.name());
+                throw new UnauthorizedException(UserErrorMessages.USER_NAME_DUPLICATED.name());
             }
         } else {
             throw new UnauthorizedException(UserErrorMessages.USER_ALREADY_EXIST.name());
@@ -78,7 +78,7 @@ public class UserService {
             }
             catch(org.springframework.dao.DataIntegrityViolationException e)
             {
-                throw new UnauthorizedException(UserErrorMessages.USER_DUPLICATED_NAME.name());
+                throw new UnauthorizedException(UserErrorMessages.USER_NAME_DUPLICATED.name());
             }
         } else {
             throw new UnauthorizedException(UserErrorMessages.NEW_USER.name());
@@ -89,9 +89,9 @@ public class UserService {
     public User delete(long id) {
         Optional<UserEntity> userEntityOptional = userRepository.findById(id);
         if (userEntityOptional.isPresent()) {
-            UserEntity facilityEntity = userEntityOptional.get();
+            UserEntity userEntity = userEntityOptional.get();
             userRepository.deleteById(id);
-            return userMapper.toModel(facilityEntity);
+            return userMapper.toModel(userEntity);
         } else
             throw new NotFoundException(UserErrorMessages.USER_NOT_FOUND.name());
     }

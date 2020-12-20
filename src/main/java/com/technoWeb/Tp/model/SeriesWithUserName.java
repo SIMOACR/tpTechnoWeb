@@ -6,7 +6,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class Series {
+public class SeriesWithUserName {
     private long id;
 
     @NonNull
@@ -19,5 +19,5 @@ public class Series {
     private boolean publicAccess;
 
     @NonNull
-    private User user;
+    private String userName;
 }

@@ -5,7 +5,7 @@ import com.technoWeb.Tp.service.tag.TagEntity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -20,7 +20,7 @@ public class EventEntity {
     long id;
 
     @NonNull
-    private Timestamp timestamp;
+    private LocalDateTime eventDate;
 
     @NonNull
     private float value;
@@ -34,6 +34,4 @@ public class EventEntity {
     @ManyToMany
     private List<TagEntity> tagEntityList;
 
-    public EventEntity(Timestamp timestamp, float value, String comment, SeriesEntity fromModel, List<TagEntity> tagEntityList) {
-    }
 }

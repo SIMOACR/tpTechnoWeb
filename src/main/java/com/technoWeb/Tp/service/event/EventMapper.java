@@ -31,7 +31,7 @@ public class EventMapper implements Mapper<Event, EventEntity> {
                     .collect(Collectors.toList());
         return new Event(
             entity.getId(),
-            entity.getTimestamp(),
+            entity.getEventDate(),
             entity.getValue(),
             entity.getComment(),
             seriesMapper.toModel(entity.getSeriesEntity()),
@@ -50,7 +50,7 @@ public class EventMapper implements Mapper<Event, EventEntity> {
                     .collect(Collectors.toList());
         return new EventEntity(
                 model.getId(),
-                model.getTimestamp(),
+                model.getEventDate(),
                 model.getValue(),
                 model.getComment(),
                 seriesMapper.fromModel(model.getSeries()),

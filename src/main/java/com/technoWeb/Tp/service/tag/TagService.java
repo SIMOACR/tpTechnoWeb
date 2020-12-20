@@ -23,9 +23,9 @@ public class TagService {
     private TagMapper tagMapper;
 
     public List<Tag> findAll() {
-        List<TagEntity> facilityEntities = tagRepository.findAll();
-        if (!facilityEntities.isEmpty())
-            return facilityEntities.stream()
+        List<TagEntity> tagEntities = tagRepository.findAll();
+        if (!tagEntities.isEmpty())
+            return tagEntities.stream()
                     .map(tagMapper::toModel)
                     .collect(Collectors.toList());
         else
@@ -75,9 +75,9 @@ public class TagService {
     public Tag delete(long id) {
         Optional<TagEntity> tagEntityOptional = tagRepository.findById(id);
         if (tagEntityOptional.isPresent()) {
-            TagEntity facilityEntity = tagEntityOptional.get();
+            TagEntity tagEntity = tagEntityOptional.get();
             tagRepository.deleteById(id);
-            return tagMapper.toModel(facilityEntity);
+            return tagMapper.toModel(tagEntity);
         } else
             throw new NotFoundException(TagErrorMessages.TAG_NOT_FOUND.name());
     }

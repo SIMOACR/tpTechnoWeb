@@ -1,36 +1,40 @@
 package com.technoWeb.Tp.service.series;
 
-import com.technoWeb.Tp.model.Series;
+import com.technoWeb.Tp.model.SeriesWithUserName;
+import com.technoWeb.Tp.repository.UserRepository;
 import com.technoWeb.Tp.service.mapper.Mapper;
 import com.technoWeb.Tp.service.user.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SeriesMapper implements Mapper<Series, SeriesEntity> {
+public class SeriesWithUserNameMapper implements Mapper<SeriesWithUserName, SeriesEntity> {
 
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
-    public Series toModel(SeriesEntity entity) {
-        return new Series(
+    public SeriesWithUserName toModel(SeriesEntity entity) {
+        return new SeriesWithUserName(
                 entity.getId(),
                 entity.getTitle(),
                 entity.getDescription(),
                 entity.isPublicAccess(),
-                userMapper.toModel(entity.getUserEntity())
+                entity.getUserEntity().getUserName()
         );
     }
 
     @Override
-    public SeriesEntity fromModel(Series model) {
+    public SeriesEntity fromModel(SeriesWithUserName model) {
         return new SeriesEntity(
                 model.getId(),
                 model.getTitle(),
                 model.getDescription(),
                 model.isPublicAccess(),
-                userMapper.fromModel(model.getUser())
+                userRepository.findByUserName(model.getUserName()).get()
         );
     }
 }

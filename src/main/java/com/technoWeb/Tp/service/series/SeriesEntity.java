@@ -1,5 +1,6 @@
 package com.technoWeb.Tp.service.series;
 
+import com.technoWeb.Tp.service.user.UserEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,5 +25,9 @@ public class SeriesEntity {
 
     @NonNull
     private boolean publicAccess;
+
+    @NonNull
+    @ManyToOne
+    private UserEntity userEntity;
 
 }

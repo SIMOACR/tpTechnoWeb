@@ -23,9 +23,9 @@ public class SeriesService {
     private SeriesMapper seriesMapper;
 
     public List<Series> findAll() {
-        List<SeriesEntity> facilityEntities = seriesRepository.findAll();
-        if (!facilityEntities.isEmpty())
-            return facilityEntities.stream()
+        List<SeriesEntity> seriesEntities = seriesRepository.findAll();
+        if (!seriesEntities.isEmpty())
+            return seriesEntities.stream()
                     .map(seriesMapper::toModel)
                     .collect(Collectors.toList());
         else
@@ -74,9 +74,9 @@ public class SeriesService {
     public Series delete(long id) {
         Optional<SeriesEntity> seriesEntityOptional = seriesRepository.findById(id);
         if (seriesEntityOptional.isPresent()) {
-            SeriesEntity facilityEntity = seriesEntityOptional.get();
+            SeriesEntity seriesEntity = seriesEntityOptional.get();
             seriesRepository.deleteById(id);
-            return seriesMapper.toModel(facilityEntity);
+            return seriesMapper.toModel(seriesEntity);
         } else
             throw new NotFoundException(SeriesErrorMessages.SERIES_NOT_FOUND.name());
     }
