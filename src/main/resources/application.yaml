@@ -1,9 +1,12 @@
+server:
+  servlet:
+    context-path : '/api'
 spring:
   application:
     name: tpTechnoWeb
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/tpTechnoWeb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    url: jdbc:mysql://18.134.159.119:3306/tpTechnoWeb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
     password:
   jpa:
