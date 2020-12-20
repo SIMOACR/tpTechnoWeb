@@ -68,7 +68,7 @@ public class TagServiceTest {
     }
 
     @Test
-    public void when_findById_expect_facility() throws Exception{
+    public void when_findById_expect_tag() throws Exception{
         Assertions.assertEquals("NameTest", tagService.findById(1L).getName());
     }
 

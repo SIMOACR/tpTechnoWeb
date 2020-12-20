@@ -6,15 +6,18 @@ import com.technoWeb.Tp.exception.NotFoundException;
 import com.technoWeb.Tp.model.Event;
 import com.technoWeb.Tp.model.Series;
 import com.technoWeb.Tp.model.User;
+
 import com.technoWeb.Tp.repository.EventRepository;
 import com.technoWeb.Tp.service.event.EventEntity;
 import com.technoWeb.Tp.service.event.EventMapper;
 import com.technoWeb.Tp.service.event.EventService;
 import com.technoWeb.Tp.service.series.SeriesEntity;
+
 import com.technoWeb.Tp.service.user.UserEntity;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -23,6 +26,14 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.Optional;
 
 import static org.mockito.Mockito.verify;
@@ -65,6 +76,10 @@ public class EventServiceTest {
         );
 
 
+        when(eventRepository.findById(1L)).thenReturn(Optional.of(new EventEntity(1,date,value,"CommentTest",seriesEntity,null)));
+        when(eventRepository.findById(3L)).thenReturn(Optional.empty());
+
+        when(eventRepository.save(new EventEntity(1,date,value,"CommentTest",seriesEntity,null))).thenReturn(new EventEntity(1,date,value,"CommentTest",seriesEntity,null));
         when(eventRepository.findById(1L)).thenReturn(Optional.of(new EventEntity(1,date,value,"CommentTest",seriesEntity,null)));
         when(eventRepository.findById(3L)).thenReturn(Optional.empty());
 
