@@ -11,6 +11,7 @@ import java.util.Optional;
 public interface EventRepository extends JpaRepository<EventEntity, Long> {
     Optional<EventEntity> findById(long id);
     Optional<List<EventEntity>> findBySeriesEntityUserEntityUserNameAndTagEntityList_Name(String userName, String tagName);
+    Optional<List<EventEntity>> findAllBySeriesEntityId(long id);
     Long countAllByEventDateBetweenAndTagEntityList_NameAndSeriesEntityUserEntityUserName(
             LocalDateTime timestamp1, LocalDateTime timestamp, String tagName, String userName
     );

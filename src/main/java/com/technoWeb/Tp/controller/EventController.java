@@ -32,6 +32,13 @@ public class EventController {
         return new ResponseEntity<>(eventService.findByTag(userName, tagName), HttpStatus.OK);
     }
 
+    @GetMapping("series/{seriesId}")
+    public ResponseEntity<List<Event>> getBySeriesId(
+            @PathVariable("seriesId") long seriesId
+    ) {
+        return new ResponseEntity<>(eventService.findBySeriesId(seriesId), HttpStatus.OK);
+    }
+
     @GetMapping("tagLastOccurrence/{userName}/{tag}")
     public ResponseEntity<LocalDateTime> getLatestOccurrence(
             @PathVariable("userName") String userName,

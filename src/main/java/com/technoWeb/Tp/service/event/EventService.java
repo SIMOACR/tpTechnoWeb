@@ -40,6 +40,13 @@ public class EventService {
                 .map(eventMapper::toModel).collect(Collectors.toList());
     }
 
+    public List<Event> findBySeriesId(long id) {
+        return eventRepository.findAllBySeriesEntityId(id)
+                .orElseThrow(() -> new NoContentException(EventErrorMessages.NO_EVENT.name()))
+                .stream()
+                .map(eventMapper::toModel).collect(Collectors.toList());
+    }
+
     public Long countTagOccurrence(LocalDateTime timestamp1, LocalDateTime timestamp2, String tagName, String userName) {
         return eventRepository.countAllByEventDateBetweenAndTagEntityList_NameAndSeriesEntityUserEntityUserName(
                 timestamp1, timestamp2, tagName, userName
